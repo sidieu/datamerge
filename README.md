@@ -5,7 +5,7 @@ How To
 
 Before running the application, please follow below :
 
-1.	Make sure you put the config.properties file to your Home directory (for example to C:\Users\{USER} for Windows OS) 
+1.	Make sure you put the config.properties file to your Home directory (for example to C:\Users\\{USER} for Windows OS) 
 2.	Open the config.properties and change the "file.path" values. put your own path where you have your reports.csv, reports.json, reports.xml files. 
 3.	Make sur that all library are in the lib directory where the jar exe file is.
 4.	2 library are principaly used : 
