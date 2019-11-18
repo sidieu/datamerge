@@ -52,7 +52,7 @@ public class Utilities {
     private static final String TEMP_CSV_FILE_PATH = FILE_PATH+Config.getConfig("temp.csv.file");
     private static final String FINAL_CSV_FILE_PATH = FILE_PATH+Config.getConfig("final.csv.file");
     
-    public static void CSVReader(String filePath,String type) throws IOException {
+    public static void csvReader(String filePath,String type) throws IOException {
   
        Report report = null;
        List<Report> reports = new ArrayList();
@@ -101,9 +101,9 @@ public class Utilities {
                 if(type.equals("temp")){
                     File file = new File(FINAL_CSV_FILE_PATH); 
                     file.delete();
-                    CSVWriter(reports,TEMP_CSV_FILE_PATH);
+                    csvWriter(reports,TEMP_CSV_FILE_PATH);
                 }else {
-                    CSVWriter(reports,FINAL_CSV_FILE_PATH);
+                    csvWriter(reports,FINAL_CSV_FILE_PATH);
                     System.out.print("===============SUMMARY===============\n");
                     System.out.print("client-guid      =           "+i+"\n");
                 }
@@ -114,7 +114,7 @@ public class Utilities {
     }
     
   
- public static void CSVWriter(List<Report> report, String filePath) throws IOException {
+ public static void csvWriter(List<Report> report, String filePath) throws IOException {
         CSVPrinter jcdCSVPrinter;
          
         try
@@ -147,7 +147,7 @@ public class Utilities {
         }
     }
  
- public static void CSVWriterWithoutHeader(List<Report> report) throws IOException {
+ public static void csvWriterWithoutHeader(List<Report> report) throws IOException {
         CSVPrinter jcdCSVPrinter;
          
         try
@@ -180,7 +180,7 @@ public class Utilities {
     }
  
 
-    public static void JSONReader() throws IOException {
+    public static void jsonReader() throws IOException {
        JSONParser jsonParser = new JSONParser();
        StringBuilder sb = new StringBuilder();
        
@@ -224,7 +224,7 @@ public class Utilities {
                 }
             }
             
-            CSVWriterWithoutHeader(reports);
+            csvWriterWithoutHeader(reports);
             //System.out.println("count: "+count);
           
             reader.close();
@@ -236,7 +236,7 @@ public class Utilities {
             e.printStackTrace();
         }
     }
-    public static void XMLReader() throws IOException {
+    public static void xmlReader() throws IOException {
         String filePath = XML_FILE_PATH;
         File xmlFile = new File(filePath);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -284,7 +284,7 @@ public class Utilities {
                     
                 }
             }
-            CSVWriterWithoutHeader(reports);
+            csvWriterWithoutHeader(reports);
            // System.out.println("number of records client-guid :" + recordNbre);
 
         } catch (SAXException | ParserConfigurationException | IOException e1) {

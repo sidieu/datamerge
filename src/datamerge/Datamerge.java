@@ -26,13 +26,13 @@ public class Datamerge {
     public static void main(String[] args) throws IOException {
               
                 // Start Read CSV File, exclude all  packets-serviced equal to zero and output on CSV temp file.
-              Utilities.CSVReader(CSV_FILE_PATH,"temp");
+              Utilities.csvReader(CSV_FILE_PATH,"temp");
               // Start Read XML File, exclude all  packets-serviced equal to zero and output on CSV temp file.
-              Utilities.XMLReader();
+              Utilities.xmlReader();
               // Start Read JSON File, exclude all  packets-serviced equal to zero, output on CSV temp file
-              Utilities.JSONReader();
+              Utilities.jsonReader();
               // Start Read CSV temp File Sort by request-time in ascending order and output on CSV final combined file
-              Utilities.CSVReader(TEMP_CSV_FILE_PATH,"final");
+              Utilities.csvReader(TEMP_CSV_FILE_PATH,"final");
               // delete temp file
               File file = new File(TEMP_CSV_FILE_PATH); 
                 if(file.delete()) 
