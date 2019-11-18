@@ -49,7 +49,7 @@ public class Utilities {
     private static final String FILE_PATH = Config.getConfig("file.path");
     private static final String JSON_FILE_PATH = FILE_PATH+Config.getConfig("json.file");
     private static final String XML_FILE_PATH = FILE_PATH+Config.getConfig("xml.file");
-    private static final String TEMP_CSV_FILE_PATH = FILE_PATH+Config.getConfig("temp.csv.file");
+    private static final String TEMP_CSV_FILE_PATH = FILE_PATH+Config.  getConfig("temp.csv.file");
     private static final String FINAL_CSV_FILE_PATH = FILE_PATH+Config.getConfig("final.csv.file");
     
     public static void csvReader(String filePath,String type) throws IOException {
@@ -78,16 +78,10 @@ public class Utilities {
                  // Skip this line
                     }else { 
                     // Write data to the combined CSV file
-                    report = new Report();
-                    report.setClientaddress(clientaddress);
-                    report.setClientguid(clientguid);
-                    report.setRequesttime(requesttime);
-                    report.setServiceguid(serviceguid);
-                    report.setRetriesrequest(retriesrequest);
-                    report.setPacketsrequested(packetsrequested);
-                    report.setPacketsserviced(packetsserviced);
-                    report.setMaxholesize(maxholesize);
-                    reports.add(report);
+                    
+                     reports = resultSetToReport(reports, new Report(), clientaddress, clientguid, requesttime,
+                 serviceguid, retriesrequest, packetsrequested, packetsserviced, maxholesize);
+                    
                         ++i;
                     }
 
@@ -112,8 +106,7 @@ public class Utilities {
             
         }
     }
-    
-  
+      
  public static void csvWriter(List<Report> report, String filePath) throws IOException {
         CSVPrinter jcdCSVPrinter;
          
@@ -210,16 +203,10 @@ public class Utilities {
                 if(packetsserviced.equals("0")){
                  // Skip this line
                     } else { 
-                    report = new Report();
-                    report.setClientaddress(clientaddress);
-                    report.setClientguid(clientguid);
-                    report.setRequesttime(requesttime);
-                    report.setServiceguid(serviceguid);
-                    report.setRetriesrequest(retriesrequest);
-                    report.setPacketsrequested(packetsrequested);
-                    report.setPacketsserviced(packetsserviced);
-                    report.setMaxholesize(maxholesize);
-                    reports.add(report);
+                    
+                     reports = resultSetToReport(reports, new Report(), clientaddress, clientguid, requesttime,
+                 serviceguid, retriesrequest, packetsrequested, packetsserviced, maxholesize);
+          
                     ++count;
                 }
             }
@@ -269,16 +256,9 @@ public class Utilities {
                         String packetsserviced = getTagValue("packets-serviced", element);
                         String maxholesize = getTagValue("max-hole-size", element);
                         
-                        report = new Report();
-                        report.setClientaddress(clientaddress);
-                        report.setClientguid(clientguid);
-                        report.setRequesttime(requesttime);
-                        report.setServiceguid(serviceguid);
-                        report.setRetriesrequest(retriesrequest);
-                        report.setPacketsrequested(packetsrequested);
-                        report.setPacketsserviced(packetsserviced);
-                        report.setMaxholesize(maxholesize);
-                        reports.add(report);
+                        reports = resultSetToReport(reports, new Report(), clientaddress, clientguid, requesttime,
+                        serviceguid, retriesrequest, packetsrequested, packetsserviced, maxholesize);
+                   
                         ++recordNbre;
                     }
                     
@@ -307,6 +287,21 @@ public class Utilities {
         return formattedDate;
     }
      
-   
+    private static List<Report> resultSetToReport(List<Report> reports, Report report,String clientaddress,String clientguid,String requesttime,
+                String serviceguid,String retriesrequest,String packetsrequested,String packetsserviced,String maxholesize) {  
+            report = new Report();
+                    report.setClientaddress(clientaddress);
+                    report.setClientguid(clientguid);
+                    report.setRequesttime(requesttime);
+                    report.setServiceguid(serviceguid);
+                    report.setRetriesrequest(retriesrequest);
+                    report.setPacketsrequested(packetsrequested);
+                    report.setPacketsserviced(packetsserviced);
+                    report.setMaxholesize(maxholesize);
+                    reports.add(report);
+
+        return reports;
+    }
+      
      
 }
