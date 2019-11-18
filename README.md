@@ -1,5 +1,5 @@
 # datamerge
-Read JSON, XML and CSV File, and Write then into one combined CSV File
+Read JSON, XML and CSV File, make some validation and date format, Write then into one combined CSV File
 
 How To
 
